@@ -7,23 +7,33 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Student;
 use Illuminate\View\View;
+use Inertia\Inertia;
+
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     // return inertia::render('students/index');
+    //     return \Inertia\Inertia::render('students/index');
+    // }
     public function index()
-    {
-        return inertia::render('students/index');
-        //
-    }
+        {
+            $student = Student::all();
+            return inertia('index', ['student' => $student]);
+        }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+        $student = Student::all();
+            return inertia('AddStudents', ['student' => $student]);
         //
     }
 
